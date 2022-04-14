@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  version: ''
+  version: 2
 
 steps:
 - task: UseDotNet@2
@@ -22,11 +22,6 @@ steps:
     packageType: 'sdk'
     version: '6.x'
     performMultiLevelLookup: true
-
-- task: guid-generator@2
-  inputs:
-    VariableName: 'version'
-    GuidToUpper: false
 
 - task: replacetokens@5
   inputs:
