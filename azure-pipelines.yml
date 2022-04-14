@@ -38,14 +38,6 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-    zipAfterPublish: false
-
-- task: DotNetCoreCLI@2
-  displayName: Publish
-  inputs:
     command: 'publish'
     publishWebProjects: false
     projects: '**/Rodrigo.Tech.Blazor.WASM.Demo.csproj'
