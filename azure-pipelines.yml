@@ -23,10 +23,20 @@ steps:
     version: '6.x'
     performMultiLevelLookup: true
 
-- task: PowerShell@2
+- task: replacetokens@5
   inputs:
-    targetType: 'inline'
-    script: 'ls'
+    rootDirectory: 'wwwroot/'
+    targetFiles: 'index.html'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
 
 - task: DotNetCoreCLI@2
   inputs:
