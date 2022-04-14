@@ -16,12 +16,17 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .Net Core 3'
+  displayName: 'Use .NET 6'
   inputs:
     packageType: 'sdk'
     version: '6.x'
     performMultiLevelLookup: true
-    
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'ls -a'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
@@ -42,3 +47,8 @@ steps:
     publishWebProjects: false
     projects: '**/Rodrigo.Tech.Blazor.WASM.Demo.csproj'
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
